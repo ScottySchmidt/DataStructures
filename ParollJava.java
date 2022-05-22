@@ -152,15 +152,7 @@ public class HourlyEmployee {
 
 
 
-
-
-
 package main;
-
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.util.List;
-import java.util.Scanner; // Import the Scanner class to read text files
 
 /**
  * Payroll
@@ -168,30 +160,19 @@ import java.util.Scanner; // Import the Scanner class to read text files
  */
 public class Payroll {
     //The Payroll class must have the following instance variables:
-    private HourlyEmployee [] empsArr;//An array of HourlyEmployee objects that the Payroll object manages
-    private int empCount=0; // The number of employees currently in the Payroll
+    private HourlyEmployee[] empsArr;//An array of HourlyEmployee objects that the Payroll object manages
+    private int empCount = 0; // The number of employees currently in the Payroll
 
     //Default Constructor:
-    public Payroll(){
+    public Payroll() {
         System.out.println("Default Constructor");
     }
 
     public Payroll(HourlyEmployee[] emp) {
         this.empsArr = empsArr;
-        this.empCount+=emp.length;
+        this.empCount += emp.length;
     }
-
-    public void readFile(String file) {
-
-    }
-
-    public void writeFile(String s) {
-
-    }
-
-    public void addEmployee(HourlyEmployee emp1) {
-    }
-
+    
     public void displayEmployee(String employeeID) {
         /*
         displayEmployee displays the employee to the screen in the format of the HourlyEmployee toString.
@@ -200,7 +181,7 @@ public class Payroll {
         int found = 0;
         for (HourlyEmployee e : HourlyEmployee.empList) {
             if (e.getEmployeeID().equals(employeeID)) {
-                System.out.println( "Displaying data for empID " + employeeID + "\n" +
+                System.out.println("Displaying data for empID " + employeeID + "\n" +
                         "Name: " + e.getName() + "\n" +
                         "Pay Rate: " + e.getHourlyWage() + "\n" +
                         "Accrued Leave: " + e.getAccruedLeaveHours() + "\n" +
@@ -212,29 +193,19 @@ public class Payroll {
             }
         }
     }
-            public void displayAllEmployees() {
+
+    public void displayAllEmployees() {
             /*
             displayEmployees A displayAllEmployees method that displays all of the employees in
             the array to the screen in the format of the HourlyEmployee toString.
             */
-                for (HourlyEmployee e : HourlyEmployee.empList) {
-                    System.out.println("Displaying data for empID " + e.getEmployeeID() + "\n" +
-                            "Name: " + e.getName() + "\n" +
-                            "Pay Rate: " + e.getHourlyWage() + "\n" +
-                            "Accrued Leave: " + e.getAccruedLeaveHours() + "\n" +
-                            "Annual Hours Worked: " + e.getAnnualHoursWorked() + "\n" +
-                            "Annual Earnings: " + e.getAnnualEarnings() );
-                }
+        for (HourlyEmployee e : HourlyEmployee.empList) {
+            System.out.println("Displaying data for empID " + e.getEmployeeID() + "\n" +
+                    "Name: " + e.getName() + "\n" +
+                    "Pay Rate: " + e.getHourlyWage() + "\n" +
+                    "Accrued Leave: " + e.getAccruedLeaveHours() + "\n" +
+                    "Annual Hours Worked: " + e.getAnnualHoursWorked() + "\n" +
+                    "Annual Earnings: " + e.getAnnualEarnings());
         }
-
-    public void runPayroll(String s) {
-        /*
-          runPayroll method handles weekly payroll based on the information in the file.
-          :param: file as string
-
-          Each line of the file will have an employee id followed by the number of hours worked
-          and the number of hours of leave used that week.
-          The method will handle the pay for each employee who worked that week
-         */
     }
 }
