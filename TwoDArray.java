@@ -37,18 +37,21 @@ public class Main
         //System.out.println(sum);
         sum = 0; // Reset the sum
     }
-    System.out.println(colList+  "| " + grandTotal);
-    System.out.println("Done");
+    for (int c : colList) {
+        System.out.print(c+ " ");
+    }
+    System.out.println( " | " + grandTotal);
+    System.out.println("Done.");
     }
 }
 
-
 /*
-5  4  1  3  7  | 20
-1  0  7  7  8  | 23
-9  6  6  0  2  | 23
-2  5  9  8  8  | 32
-0  7  8  6  3  | 24
-[17, 22, 31, 24, 28]| 244
+6  0  7  6  3   | 22
+2  5  0  2  9   | 18
+0  3  0  4  7   | 14
+5  4  5  0  7   | 21
+0  3  2  3  2   | 10
+13 15 14 15 28  | 170
+Done.
 Done
 */  
