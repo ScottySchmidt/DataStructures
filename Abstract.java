@@ -27,19 +27,15 @@ public class Person {
         System.out.println(name+" "+age+" "+gender);  
         return name+" "+age+" "+gender;  
     }
-
-    public static void main(String[ ] args) {
-        Person p1=new Person("PersonTest", 50, "Female"); 
-        p1.toString();
-    }
-
 }
 
 public class Student extends Person {
         private String major;
         private double totalGrade;
         private int numOfCourses;
-    
+
+
+        //STUDENT CONSTRUCTOR:
         public Student(String name, int age, String gender, String major,  double totalGrade, int numOfCourses) {
             super(name, age, gender);
             this.major=major;
@@ -57,30 +53,36 @@ public class Student extends Person {
                 System.out.println(name+" "+age+" "+gender);  
                 return name+" "+age+" "+gender;  
             }
-	  
-     public static void main(String[ ] args) {
-        Student s1=new Student("James Smith", 26, "Male", "Computer", 350, 4);
-        s1.getAverageGrade();
-
-        Student s2=new Student("James Smith", 26, "Male", "Technology", 281, 3);
-        s2.toString();
-    }
 }
 
 
 public class Employee extends Person {
         public double rate;
-        public double hours;
-    
-        public Employee(String name, int age, String gender, double hours, double rate) {
+        public double hour;
+
+        //EMPLOYEE CONSTRUCTOR:
+        public Employee(String name, int age, String gender, double hour, double rate) {
             super(name, age, gender);
-            this.hours=hours;
+            this.hour=hour;
             this.rate=rate;
             }
 
             public String toString() {
-                System.out.println(name+" "+age+" "+gender +" " +rate +" " +hours);  
+                System.out.println(name+" "+age+" "+gender +" " +rate +" " +hour);  
                 return name+" "+age+" "+gender;  
+            }
+
+            public double getHour(){
+                return hour;
+            }
+
+            public double getRate(){
+                return rate;
+            }
+
+            public double getPayment(){
+                double pay=this.rate*this.hour;
+                return pay;
             }
 
             public boolean equals(){
@@ -88,9 +90,22 @@ public class Employee extends Person {
             }
 
      public static void main(String[ ] args) {
+        //PERSON CLASS:
+        Person p1=new Person("PersonTest", 50, "Female"); 
+        p1.toString();
+
+        //STUDENT CLASS:
+        Student s1=new Student("James Smith", 26, "Male", "Computer", 350, 4);
+        s1.getAverageGrade();
+
+        Student s2=new Student("James Smith", 26, "Male", "Technology", 281, 3);
+        s2.toString();
+
+        //EMPLOYEE CLASS:
         Employee e1=new Employee("Linda Ward", 26, "Female", 17.8, 22.7);
 
         Employee e2=new Employee("Linda Ward", 26, "Female", 19.3, 17.8);
         e2.toString();
+        System.out.println(e2.getPayment());
     }
 }
