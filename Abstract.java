@@ -1,3 +1,7 @@
+import java.util.List; 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Person {
 
     public String name;
@@ -34,6 +38,10 @@ public class Student extends Person {
         private double totalGrade;
         private int numOfCourses;
 
+         // Declaring an array of student
+        ArrayList<Object> stuArr = new ArrayList<Object>();
+
+        public static int stuCount=0;
 
         //STUDENT CONSTRUCTOR:
         public Student(String name, int age, String gender, String major,  double totalGrade, int numOfCourses) {
@@ -41,6 +49,13 @@ public class Student extends Person {
             this.major=major;
             this.totalGrade=totalGrade;
             this.numOfCourses=numOfCourses;
+      
+            
+            List<Object> temp = Arrays.asList(name, gender, major, totalGrade,numOfCourses);
+            stuArr.add(temp);
+            System.out.println(stuArr);
+
+            stuCount+=1;
             }
 
             public double getAverageGrade() {
@@ -50,8 +65,8 @@ public class Student extends Person {
             }
 
             public String toString() {
-                System.out.println(name+" "+age+" "+gender);  
-                return name+" "+age+" "+gender;  
+                System.out.println(name+" "+age+" "+gender+ ""+ getAverageGrade());  
+                return name+" "+age+" "+gender;
             }
 }
 
@@ -59,6 +74,8 @@ public class Student extends Person {
 public class Employee extends Person {
         public double rate;
         public double hour;
+
+        Employee[] empArr = new Employee[50];
 
         //EMPLOYEE CONSTRUCTOR:
         public Employee(String name, int age, String gender, double hour, double rate) {
@@ -89,6 +106,7 @@ public class Employee extends Person {
                 return true;
             }
 
+
      public static void main(String[ ] args) {
         //PERSON CLASS:
         Person p1=new Person("PersonTest", 50, "Female"); 
@@ -96,16 +114,20 @@ public class Employee extends Person {
 
         //STUDENT CLASS:
         Student s1=new Student("James Smith", 26, "Male", "Computer", 350, 4);
-        s1.getAverageGrade();
+        //s1.getAverageGrade();
 
         Student s2=new Student("James Smith", 26, "Male", "Technology", 281, 3);
-        s2.toString();
+        //s2.toString();
+
+        Student s3=new Student("Scott Schmidt", 28, "Male", "Computer", 400, 4);
 
         //EMPLOYEE CLASS:
+        Employee[] empObj = new Employee[2] ;
+
         Employee e1=new Employee("Linda Ward", 26, "Female", 17.8, 22.7);
 
         Employee e2=new Employee("Linda Ward", 26, "Female", 19.3, 17.8);
-        e2.toString();
-        System.out.println(e2.getPayment());
+        //e2.toString();
+        //System.out.println(e2.getPayment());
     }
 }
