@@ -33,14 +33,19 @@ public class Person {
     }
 }
 
+public class storage {
+    //public static ArrayList<Object> stuArr;
+    public static ArrayList<Object> arr = new ArrayList<Object>();
+
+}
+
+
 public class Student extends Person {
         private String major;
         private double totalGrade;
         private int numOfCourses;
 
-         // Declaring an array of student
         ArrayList<Object> stuArr = new ArrayList<Object>();
-
         public static int stuCount=0;
 
         //STUDENT CONSTRUCTOR:
@@ -54,8 +59,12 @@ public class Student extends Person {
             List<Object> temp = Arrays.asList(name, gender, major, totalGrade,numOfCourses);
             stuArr.add(temp);
             System.out.println(stuArr);
+            
+            storage.arr.add(temp);
+            System.out.println(storage.arr);
 
-            stuCount+=1;
+            stuCount++;
+            System.out.println(stuCount);
             }
 
             public double getAverageGrade() {
@@ -65,7 +74,7 @@ public class Student extends Person {
             }
 
             public String toString() {
-                System.out.println(name+" "+age+" "+gender+ ""+ getAverageGrade());  
+                System.out.println(name+" "+age+" "+gender+ " "+ getAverageGrade());  
                 return name+" "+age+" "+gender;
             }
 }
@@ -114,10 +123,10 @@ public class Employee extends Person {
 
         //STUDENT CLASS:
         Student s1=new Student("James Smith", 26, "Male", "Computer", 350, 4);
-        //s1.getAverageGrade();
+        s1.getAverageGrade();
 
         Student s2=new Student("James Smith", 26, "Male", "Technology", 281, 3);
-        //s2.toString();
+        s2.toString();
 
         Student s3=new Student("Scott Schmidt", 28, "Male", "Computer", 400, 4);
 
@@ -127,7 +136,7 @@ public class Employee extends Person {
         Employee e1=new Employee("Linda Ward", 26, "Female", 17.8, 22.7);
 
         Employee e2=new Employee("Linda Ward", 26, "Female", 19.3, 17.8);
-        //e2.toString();
-        //System.out.println(e2.getPayment());
+        e2.toString();
+        System.out.println(e2.getPayment());
     }
 }
