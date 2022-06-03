@@ -1,8 +1,8 @@
-import java.util.List; 
-import java.util.ArrayList;
-import java.util.Arrays;
+public abstract class Person {
 
-public class Person {
+    public static ArrayList<Object> stuArr = new ArrayList<Object>();
+    public static ArrayList<Object> empArr = new ArrayList<Object>();
+    public static Student stuObj[];
 
     public String name;
     public int age;
@@ -33,19 +33,11 @@ public class Person {
     }
 }
 
-public class storage {
-    //public static ArrayList<Object> stuArr;
-    public static ArrayList<Object> arr = new ArrayList<Object>();
-
-}
-
-
 public class Student extends Person {
         private String major;
         private double totalGrade;
         private int numOfCourses;
 
-        ArrayList<Object> stuArr = new ArrayList<Object>();
         public static int stuCount=0;
 
         //STUDENT CONSTRUCTOR:
@@ -55,16 +47,13 @@ public class Student extends Person {
             this.totalGrade=totalGrade;
             this.numOfCourses=numOfCourses;
       
-            
-            List<Object> temp = Arrays.asList(name, gender, major, totalGrade,numOfCourses);
-            stuArr.add(temp);
-            System.out.println(stuArr);
-            
-            storage.arr.add(temp);
-            System.out.println(storage.arr);
-
+            List<Object> temp = Arrays.asList(name, age, gender, major, totalGrade, numOfCourses);
+            Person.stuArr.add(temp);
             stuCount++;
-            System.out.println(stuCount);
+
+            //System.out.println(storage.stuArr);
+            equals();
+            //displayStudents();
             }
 
             public double getAverageGrade() {
@@ -77,6 +66,16 @@ public class Student extends Person {
                 System.out.println(name+" "+age+" "+gender+ " "+ getAverageGrade());  
                 return name+" "+age+" "+gender;
             }
+
+            public void equals() {
+                    for (int i = 0; i < Person.stuArr.size(); i++) 
+                    System.out.println(Person.stuArr.get(i)); 
+             }     
+             
+            public void displayStudents() {
+                    for (int i = 0; i < Person.stuArr.size(); i++) 
+                 System.out.print(Person.stuArr.get(i)); 
+             }   
 }
 
 
@@ -84,13 +83,14 @@ public class Employee extends Person {
         public double rate;
         public double hour;
 
-        Employee[] empArr = new Employee[50];
-
         //EMPLOYEE CONSTRUCTOR:
         public Employee(String name, int age, String gender, double hour, double rate) {
             super(name, age, gender);
             this.hour=hour;
             this.rate=rate;
+
+            List<Object> temp = Arrays.asList(name, age, gender, hour, rate);
+            Person.empArr.add(temp);
             }
 
             public String toString() {
@@ -114,13 +114,10 @@ public class Employee extends Person {
             public boolean equals(){
                 return true;
             }
+}
 
-
+public class test {
      public static void main(String[ ] args) {
-        //PERSON CLASS:
-        Person p1=new Person("PersonTest", 50, "Female"); 
-        p1.toString();
-
         //STUDENT CLASS:
         Student s1=new Student("James Smith", 26, "Male", "Computer", 350, 4);
         s1.getAverageGrade();
