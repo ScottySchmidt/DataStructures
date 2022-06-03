@@ -1,8 +1,12 @@
+//Illinois State Univeresity; DataStructures; Scott Schmidt
+import java.util.List; 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public abstract class Person {
 
     public static ArrayList<Object> stuArr = new ArrayList<Object>();
     public static ArrayList<Object> empArr = new ArrayList<Object>();
-    public static Student stuObj[];
 
     public String name;
     public int age;
@@ -51,14 +55,12 @@ public class Student extends Person {
             Person.stuArr.add(temp);
             stuCount++;
 
-            //System.out.println(storage.stuArr);
-            equals();
-            //displayStudents();
+            displayStudents();
             }
 
             public double getAverageGrade() {
                 double grade=this.totalGrade/this.numOfCourses;
-                System.out.println(grade);
+                grade = Math.round(grade * 100.0) / 100.0;
                 return grade;
             }
 
@@ -67,13 +69,18 @@ public class Student extends Person {
                 return name+" "+age+" "+gender;
             }
 
-            public void equals() {
-                    for (int i = 0; i < Person.stuArr.size(); i++) 
-                    System.out.println(Person.stuArr.get(i)); 
+            public boolean equals(Object obj) {
+                if (name.equals(this.name) & gender.equals(this.gender) & age==this.age ) {
+                    System.out.println("Same Person");
+                    return true;
+                } else {
+                    System.out.println("Different Person");
+                    return false;
              }     
+            }
              
             public void displayStudents() {
-                    for (int i = 0; i < Person.stuArr.size(); i++) 
+                for (int i = 0; i < Person.stuArr.size(); i++) 
                  System.out.print(Person.stuArr.get(i)); 
              }   
 }
@@ -107,16 +114,24 @@ public class Employee extends Person {
             }
 
             public double getPayment(){
-                double pay=this.rate*this.hour;
-                return pay;
+                double money=this.rate*this.hour;
+                money = Math.round(money * 100.0) / 100.0;
+                System.out.println(money);
+                return money;
             }
 
-            public boolean equals(){
-                return true;
+            public boolean equals(Object obj) {
+                if (name.equals(this.name) & gender.equals(this.gender) & rate==this.rate ) {
+                    System.out.println("Same Person");
+                    return true;
+                } else {
+                    System.out.println("Different Person");
+                    return false;
+             }     
             }
 }
 
-public class test {
+public class Test {
      public static void main(String[ ] args) {
         //STUDENT CLASS:
         Student s1=new Student("James Smith", 26, "Male", "Computer", 350, 4);
@@ -126,14 +141,14 @@ public class test {
         s2.toString();
 
         Student s3=new Student("Scott Schmidt", 28, "Male", "Computer", 400, 4);
+        s1.equals(s2);
 
         //EMPLOYEE CLASS:
-        Employee[] empObj = new Employee[2] ;
-
         Employee e1=new Employee("Linda Ward", 26, "Female", 17.8, 22.7);
 
         Employee e2=new Employee("Linda Ward", 26, "Female", 19.3, 17.8);
         e2.toString();
-        System.out.println(e2.getPayment());
+        e2.getPayment();
+        e1.equals(e2);
     }
 }
