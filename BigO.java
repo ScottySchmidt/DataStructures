@@ -77,8 +77,13 @@ public class TWArrayList {
 
     //remove first item of ArrayList
     public void removeFirst(){
-        data.remove(0);
-        System.out.println(data);
+        if (data.size()>0) {
+            data.remove(0);
+            System.out.println("Removed first index. New data:");
+            System.out.println(data);
+        } else {
+            System.out.println("Data list is empty cannot delete");
+        }
     }
 
     //return index of value; return -1 if value not found
@@ -105,5 +110,32 @@ public class TWArrayListTest1 {
         tw1.addFirstTwo("sun4", "sun5");
         tw1.removeFirst();
         tw1.indexOf("NOT EXISTS"); //correctly returns -1
+        tw1.indexOf("sun1"); //correctly returns 3
+    }
+}
+
+public class TWArrayListTest2 {
+    public static void main(String[] args) {
+        ArrayList<Object> list = new ArrayList<>();
+        
+        TWArrayList tw2 = new TWArrayList(list, 0, 0);
+        tw2.addFirst("sun1");
+        tw2.addFirst("sun2");
+        tw2.removeFirst();
+        tw2.removeFirst();
+        tw2.removeFirst(); //prints Data list is empty cannot delete
+    }
+}
+
+public class TWArrayListTest3 {
+    public static void main(String[] args) {
+        ArrayList<Object> list = new ArrayList<>();
+        
+        TWArrayList tw3 = new TWArrayList(list, 0, 0);
+        tw3.addFirstTwo("sun1", "sun2");
+        tw3.addFirstTwo("sun3", "sun4");
+        tw3.indexOf("sun1");
+        tw3.indexOf("sun3");
+        tw3.indexOf("sun4");
     }
 }
