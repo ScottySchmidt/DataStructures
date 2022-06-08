@@ -62,10 +62,35 @@ public class TWArrayList {
         return capacity;
     }
 
-    //add value to ArrayList
+    //add value to ArrayList at beginning
     public void addFirst(String value) {
-        data.add(value);
+        data.add(0, value);
         System.out.println(data);
+    }
+
+    //add two values at beginning of ArrayList
+    public void addFirstTwo(String entry1, String entry2) {
+        data.add(0, entry2);
+        data.add(0, entry1);
+        System.out.println(data);
+    }
+
+    //remove first item of ArrayList
+    public void removeFirst(){
+        data.remove(0);
+        System.out.println(data);
+    }
+
+    //return index of value; return -1 if value not found
+    public int indexOf(String value) {
+            for (int i =0; i<data.size(); i++) {
+                if (data.get(i).equals(value)) {
+                    System.out.println(i+ " found");
+                    return i;
+                } 
+        }
+        System.out.println("-1 not found");
+        return -1;
     }
 }
 
@@ -75,5 +100,10 @@ public class TWArrayListTest1 {
 
         TWArrayList tw1 = new TWArrayList(list, 0, 0);
         tw1.addFirst("sun1");
+        tw1.addFirst("sun2");
+        tw1.addFirst("sun3");
+        tw1.addFirstTwo("sun4", "sun5");
+        tw1.removeFirst();
+        tw1.indexOf("NOT EXISTS"); //correctly returns -1
     }
 }
