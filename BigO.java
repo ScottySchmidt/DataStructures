@@ -1,14 +1,15 @@
 /**
 Illinois State University; Data Structures; Scott Schmidt 
 https://code.sololearn.com/c5iQZRmb2U9b   Java working version
-https://github.com/ScottySchmidt/DataStructures/blob/main/big0Array.ipynb  Python working version
+https://github.com/ScottySchmidt/DataStructures/blob/main/Big0Array.ipynb  Python working version
 */ 
 
 import java.util.ArrayList; 
 
 public class count {
     public static void main(String[] args) {
-        int n=10;
+        int n=5;
+        System.out.println("n is " + n);
       // fragment A:
         int countA=0;
          for (int i =0; i<n; i++) {
@@ -30,9 +31,17 @@ public class count {
     System.out.println(countB+ " countB");
     }
 }
+
 /**
+n is 10
 100 countA
 20 countB
+
+n is 5
+25 countA
+10 countB
+
+Note: I got the same results using Python
 */
 
 public class TWArrayList {
@@ -123,7 +132,7 @@ public class TWArrayListTest2 {
         tw2.addFirst("sun2");
         tw2.removeFirst();
         tw2.removeFirst();
-        tw2.removeFirst(); //prints Data list is empty cannot delete
+        tw2.removeFirst();
     }
 }
 
