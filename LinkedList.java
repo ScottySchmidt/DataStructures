@@ -70,31 +70,42 @@ public class SingleList<E> {
             Node current = head;
             Node next;
             while(current != null){
-            next = current.next;
-            current.next = previous; 
-
-            previous = current;
-            current = next;
+                next = current.next;
+                current.next = previous; 
+      
+                previous = current;
+                current = next;
         }
         head = previous;
      }
 
      // Same as above but return the reversedList:
-     public static LinkedList<Integer> returnReversedList() {
-             LinkedList<Integer> reverseList = new LinkedList<Integer>();
-             return reverseList;
+     public LinkedList<Node> returnReversedList() {
+            LinkedList<Node> rList = new LinkedList<Node>();
+            Node previous = null;
+            Node current = head;
+            Node next;
+            while(current != null){
+                next = current.next;
+                current.next = previous; 
+      
+                previous = current;
+                current = next;
+                rList.add(current);
+        }
+        head = previous;
+        System.out.println(rList);
+        return rList;
      }
 
    //print the linked list  
     public void printList() {  
-        //Node current will point to head  
         Node current = head;  
         if(head == null) {  
             System.out.println("List is empty");  
             return;  
         }  
         while(current != null) {  
-            //Print each node by incrementing pointer  
             System.out.print(current.data + " ");  
             current = current.next;  
         }  
@@ -125,6 +136,8 @@ public class SingleList<E> {
         list.addBulk(arrList2);
 
         list.printList();
+
+        list.returnReversedList();
         /* 
         Original List:
         90 80 70
