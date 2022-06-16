@@ -85,15 +85,21 @@ public class SingleList<E> {
              return reverseList;
      }
 
-  
-     // Method to traverse and display all nodes
-    public void displayList(){
-        Node current = head;
-        while(current != null){
-                current = current.next;
-                //System.out.println(current);
-        }
-    }
+   //print the linked list  
+    public void printList() {  
+        //Node current will point to head  
+        Node current = head;  
+        if(head == null) {  
+            System.out.println("List is empty");  
+            return;  
+        }  
+        while(current != null) {  
+            //Print each node by incrementing pointer  
+            System.out.print(current.data + " ");  
+            current = current.next;  
+        }  
+        System.out.println();  
+    }  
 
     public static void main (String[] args) {
         //ArrayList with numbers:
@@ -118,9 +124,7 @@ public class SingleList<E> {
         arrList2.add(10);
         list.addBulk(arrList2);
 
-        System.out.println(list);
-        list.displayList();
-
+        list.printList();
         /* 
         Original List:
         90 80 70
