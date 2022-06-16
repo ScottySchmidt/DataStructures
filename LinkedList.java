@@ -3,6 +3,7 @@
 // Python verision: https://github.com/ScottySchmidt/DataStructures/blob/main/LinkedLists.ipynb
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class SingleList<E> {
         private Node<E> head;
@@ -63,7 +64,7 @@ public class SingleList<E> {
                 return str.trim();
         }
 
-        //Reverse and return linked list
+        //reverse linked list
         public void reversedList(){
             Node previous = null;
             Node current = head;
@@ -78,37 +79,54 @@ public class SingleList<E> {
         head = previous;
      }
 
+     // Same as above but return the reversedList:
+     public static LinkedList<Integer> returnReversedList() {
+             LinkedList<Integer> reverseList = new LinkedList<Integer>();
+             return reverseList;
+     }
+
+  
+     // Method to traverse and display all nodes
+    public void displayList(){
+        Node current = head;
+        while(current != null){
+                current = current.next;
+                //System.out.println(current);
+        }
+    }
+
     public static void main (String[] args) {
-                //ArrayList with numbers:
-                ArrayList<Integer> arrList = new ArrayList<>();
-                arrList.add(90);
-                arrList.add(80);
-                arrList.add(70);
+        //ArrayList with numbers:
+        ArrayList<Integer> arrList = new ArrayList<>();
+        arrList.add(90);
+        arrList.add(80);
+        arrList.add(70);
 
-                //SingleList Class Test:
-                SingleList<Integer> list = new SingleList<>();
+        //SingleList Class Test:
+        SingleList<Integer> list = new SingleList<>();
 
-                list.addBulk(arrList);
-                System.out.println("Original List:");
-                System.out.println(list);
+        list.addBulk(arrList);
+        System.out.println("Original List:");
+        System.out.println(list);
 
-                list.reversedList();
-                System.out.println("Reverse the List:");
-                System.out.println(list);
+        list.reversedList();
+        System.out.println("Reverse the List:");
+        System.out.println(list);
 
-                ArrayList<Integer> arrList2 = new ArrayList<>();
-                arrList2.add(0);
-                arrList2.add(10);
-                list.addBulk(arrList2);
+        ArrayList<Integer> arrList2 = new ArrayList<>();
+        arrList2.add(0);
+        arrList2.add(10);
+        list.addBulk(arrList2);
 
-                System.out.println(list);
+        System.out.println(list);
+        list.displayList();
 
-                /* 
-                Original List:
-                90 80 70
-                Reverse the List:
-                70 80 90
-                70 80 90 0 10
-                */
+        /* 
+        Original List:
+        90 80 70
+        Reverse the List:
+        70 80 90
+        70 80 90 0 10
+        */
         }
 }
