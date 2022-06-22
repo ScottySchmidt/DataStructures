@@ -8,27 +8,29 @@ import java.util.Objects;
 public class DoubleLinkLists {
 
     public static void main(String[] args) {
-        System.out.println("Main Test:");
         DoubleLinkedList DL1 = new DoubleLinkedList();
-
 
         //Original Names:
         DoubleLinkedList.Node nodeSam = DL1.insertInFront("Sam");
         DoubleLinkedList.Node nodeHarry = DL1.insertInFront("Harry");
         DoubleLinkedList.Node nodeDick = DL1.insertInFront("Dick");
         DoubleLinkedList.Node nodeTom = DL1.insertInFront("Tom");
+        DL1.printNodes();
         System.out.println(DL1);
 
         // Insert Bill Before Tom:
-        DoubleLinkedList.Node nodeBob = DL1.insertBefore(nodeTom, "Bill");
+        DL1.insertBefore(nodeTom, "Bill");
 
         //Insert Sue Before Sam:
-        DoubleLinkedList.Node nodeSue = DL1.insertBefore(nodeSam, "Sue");
-        System.out.println(DL1);
+        DL1.insertBefore(nodeSam, "Sue");
 
+        System.out.println("\nInserts After:");
+        DL1.printNodes();
+        
+       
         //Remove Bill and Remove Sam:
         DL1.deleteNode(0);
-        DL1.deleteNode(2);
+        DL1.deleteNode(3);
         
         System.out.println(DL1);
     }
@@ -49,26 +51,33 @@ public class DoubleLinkLists {
             return sb.toString();
         }
 
-        public void deleteNode(int key) {
-        Node temp = head, prev = null;
- 
-        if ( ( temp != null) && (temp.data.equals(key)) ) {
-            head = temp.next; // Changed head
+        // delete Node by positon:
+        public void deleteNode(int position) 
+        {
+        System.out.println("Deleting Node");
+        if (head == null)
             return;
-        }
- 
-        // Search for the key to be deleted
-        while ( ( temp != null) && (!temp.data.equals(key )) ) {
-            prev = temp;
-            temp = temp.next;
-        }
- 
-        if (temp == null)
-            return;
- 
-        prev.next = temp.next;
-    }
+  
+        Node temp = head;
 
+        if (position == 0) {
+            head = temp.next; 
+            return;
+        }
+  
+        // Find previous node of the node to be deleted
+        for (int i = 0; temp != null && i < position - 1;
+             i++)
+            temp = temp.next;
+  
+        if (temp == null || temp.next == null)
+            return;
+  
+        Node next = temp.next.next;
+        temp.next = next; 
+        }
+    
+        //insert data before given node:
         public Node insertBefore(Node givenNode, String data) {
             Node newNode = new Node(data);
             newNode.prev = givenNode.prev;
@@ -81,7 +90,7 @@ public class DoubleLinkLists {
 
             return newNode;
         }
-
+        //regular add Node:
         public Node insertInFront(String data) {
             Node newNode = new Node(data);
             newNode.next = head;
@@ -94,6 +103,21 @@ public class DoubleLinkLists {
             head = newNode;
             return newNode;
         }
+
+        //print all nodes: 
+        public void printNodes() {  
+            Node current = head;  
+            if(head == null) {  
+                System.out.println("Doubly linked list is empty");  
+                return;  
+            }  
+            System.out.println("Nodes of doubly linked list: ");  
+            while(current != null) {  
+                System.out.print(current.data + " ");  
+                current = current.next;  
+            }  
+    }
+    
 
         public static class Node {
             String data;
