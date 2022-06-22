@@ -1,7 +1,31 @@
-//Double Linked List; Data Structures; 
-//Illinois State University; Scott Schmidt
-//Working Java Verision  https://code.sololearn.com/crPPoRZPg584
-//Python Verision  https://github.com/ScottySchmidt/DataStructures/blob/main/DoubleLinkedList.ipynb
+/* 
+Double Linked List; Data Structures; 
+Illinois State University; Scott Schmidt
+Working Java Verision  https://code.sololearn.com/crPPoRZPg584
+Python Verision  https://github.com/ScottySchmidt/DataStructures/blob/main/DoubleLinkedList.ipynb
+
+
+--------------------------------------------------------------
+## Part A
+Node < String > nodeRef = tail.prev;    # new node becomes second last in LinkedLinked
+nodeRef.prev.next = tail;            # second last node from LinkedList gets removed  
+tail.prev = nodeRef.prev             # sets linkedList to previous Node
+
+
+## Part B
+Node < String > NodeRef # temp new head
+head = new node< > ("Tamika"); # head becomes new node
+head.next = nodeRef; # head becomes next node
+nodeRef.prev = head; # old head to new head 
+
+## Part C
+Node < String > node Ref = new Node< > ("Shakira") # new node Shakira created
+nodeRef.prev = head; # previous Node becomes head of LinkedList
+nodeRef.next = head.next; # next node becoomes next LinkedList
+head.next.prev = nodeRef  # head of LinkedList gets removed and becomes next
+head.next = nodeRef; # set head to new node
+*/
+
 
 import java.util.Objects;
 
@@ -10,28 +34,22 @@ public class DoubleLinkLists {
     public static void main(String[] args) {
         DoubleLinkedList DL1 = new DoubleLinkedList();
 
-        //Original Names:
+        //ORIGINAL LINKED LIST:
         DoubleLinkedList.Node nodeSam = DL1.insertInFront("Sam");
         DoubleLinkedList.Node nodeHarry = DL1.insertInFront("Harry");
         DoubleLinkedList.Node nodeDick = DL1.insertInFront("Dick");
         DoubleLinkedList.Node nodeTom = DL1.insertInFront("Tom");
-        DL1.printNodes();
         System.out.println(DL1);
 
-        // Insert Bill Before Tom:
-        DL1.insertBefore(nodeTom, "Bill");
-
-        //Insert Sue Before Sam:
-        DL1.insertBefore(nodeSam, "Sue");
-
-        System.out.println("\nInserts After:");
+        //INSERTS BEFORE:
+        DL1.insertBefore(nodeTom, "Bill"); // Insert Bill Before Tom:
+        DL1.insertBefore(nodeSam, "Sue"); //Insert Sue Before Sam:
+        DL1.insertBefore(nodeHarry, "Will"); // Insert Will Before Harry:
         DL1.printNodes();
         
-       
         //Remove Bill and Remove Sam:
         DL1.deleteNode(0);
         DL1.deleteNode(3);
-        
         System.out.println(DL1);
     }
 
@@ -54,7 +72,7 @@ public class DoubleLinkLists {
         // delete Node by positon:
         public void deleteNode(int position) 
         {
-        System.out.println("Deleting Node");
+        System.out.println("\nDeleting Node at position: " + position );
         if (head == null)
             return;
   
@@ -87,7 +105,8 @@ public class DoubleLinkLists {
             if (newNode.prev != null) {
                 newNode.prev.next = newNode;
             }
-
+            System.out.println("Add New Node: "+ data);
+            newNode = head;
             return newNode;
         }
         //regular add Node:
@@ -111,14 +130,13 @@ public class DoubleLinkLists {
                 System.out.println("Doubly linked list is empty");  
                 return;  
             }  
-            System.out.println("Nodes of doubly linked list: ");  
+            //System.out.println("Nodes of doubly linked list: ");  
             while(current != null) {  
                 System.out.print(current.data + " ");  
                 current = current.next;  
             }  
     }
     
-
         public static class Node {
             String data;
             Node prev;
