@@ -5,12 +5,11 @@ Working Java Verision  https://code.sololearn.com/crPPoRZPg584
 Python Verision  https://github.com/ScottySchmidt/DataStructures/blob/main/DoubleLinkedList.ipynb
 
 
---------------------------------------------------------------
+---------------------------------------------------------------------------------
 ## Part A
 Node < String > nodeRef = tail.prev;    # new node becomes second last in LinkedLinked
 nodeRef.prev.next = tail;            # second last node from LinkedList gets removed  
 tail.prev = nodeRef.prev             # sets linkedList to previous Node
-
 
 ## Part B
 Node < String > NodeRef # temp new head
@@ -65,7 +64,6 @@ public class DoubleLinkLists {
                 sb.append(current.data).append(" ");
                 current = current.next;
             }
-
             return sb.toString();
         }
 
@@ -84,8 +82,7 @@ public class DoubleLinkLists {
         }
   
         // Find previous node of the node to be deleted
-        for (int i = 0; temp != null && i < position - 1;
-             i++)
+        for (int i = 0; temp != null && i < position - 1; i++)
             temp = temp.next;
   
         if (temp == null || temp.next == null)
@@ -97,7 +94,7 @@ public class DoubleLinkLists {
     
         //insert data before given node:
         public Node insertBefore(Node givenNode, String data) {
-            Node newNode = new Node(data);
+            Node newNode = new Node(data); 
             newNode.prev = givenNode.prev;
             givenNode.prev = newNode;
             newNode.next = givenNode;
@@ -109,6 +106,7 @@ public class DoubleLinkLists {
             newNode = head;
             return newNode;
         }
+        
         //regular add Node:
         public Node insertInFront(String data) {
             Node newNode = new Node(data);
@@ -118,7 +116,6 @@ public class DoubleLinkLists {
             if (head != null) {
                 head.prev = newNode;
             }
-
             head = newNode;
             return newNode;
         }
@@ -127,7 +124,7 @@ public class DoubleLinkLists {
         public void printNodes() {  
             Node current = head;  
             if(head == null) {  
-                System.out.println("Doubly linked list is empty");  
+                System.out.println("linked list is empty");  
                 return;  
             }  
             //System.out.println("Nodes of doubly linked list: ");  
