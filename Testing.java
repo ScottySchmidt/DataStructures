@@ -14,9 +14,9 @@ public class Testing
     @param finish last index int
     return index of target num in the ArrayList
     */    
-    public int search(int[] arr, int target, int start, int finish) {
+    public static int search(int[] arr, int target, int start, int finish) {
         int num=-1;
-        for (int i=0; i< arr.length; i++) {
+        for (int i=start; i< finish; i++) {
             if (arr[i]==target) {
                 return i;
             }
@@ -33,8 +33,8 @@ public class Testing
     return finds the last occurrence of a target element in an array.
     */    
 
+ 
 
-  
     /*  
     method findLargest()  index of largest element in array
     @param arr as int ArrayList
@@ -46,13 +46,15 @@ public class Testing
 
 
     public static void main(String[] args) {
+
 		System.out.println("main");
 
-        ArrayList<Integer> arrList = new ArrayList<Integer>();
+        //ArrayList<Integer> arrList = new ArrayList<Integer>();
 
         int arr1[]={1,2,3, 6, 4};
-        arrList.add(arr1);
-        int test1=search(arr1, 2, 0, arrList.length);
+        //arrList.add(arr1);
+        int len1=arr1.length;
+        int test1=search(arr1, 2, 0, len1);
         System.out.println(test1);
 	}
 }
