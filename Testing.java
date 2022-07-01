@@ -1,6 +1,6 @@
 // Testing; Data Structures; Illinois State University; Scott Schmidt
-// Working Java verision:  https://code.sololearn.com/c944B5Ex9QUv
-// Python verision  https://github.com/ScottySchmidt/DataStructures/blob/main/Testing.ipynb
+// Working Java version:  https://code.sololearn.com/c944B5Ex9QUv
+// Python version  https://github.com/ScottySchmidt/DataStructures/blob/main/Testing.ipynb
 
 public class Testing
 {
@@ -49,7 +49,7 @@ public class Testing
     return index of largest element in array
     */    
     public static int findLargest(int[] arr, int start, int finish) {
-        System.out.println("Finding Largest:");
+        //System.out.println("Finding Largest:");
         int maxNum= -999;
         int maxIndex= -1;
         for (int i=start; i<finish; i++) {
@@ -66,7 +66,7 @@ public class Testing
     public static void main(String[] args) {
 
         //TEST1:
-	System.out.println("Testing Array1:");
+		System.out.println("Testing Array1:");
         int arr1[]={6, 3, 2, 6, 4, 100};
         int len1=arr1.length;
 
@@ -78,7 +78,7 @@ public class Testing
         System.out.println(last1);
         System.out.println(max1);
 
-      
+        
         //TEST2:
         System.out.println("\nTesting Array2:");
         int arr2[]={4, 13,21,30, 6, 4, 5};   
