@@ -1,5 +1,6 @@
-// Stacks Data Structures; Illinois State University; Scott Schmidt
+// Stacks Data Structure; Illinois State University; Scott Schmidt
 // Working Java verision:  https://code.sololearn.com/ceZoqE80TaCp
+// Python verision  https://github.com/ScottySchmidt/DataStructures/blob/main/Stacks.ipynb
 
 import java.util.*;
 
@@ -57,7 +58,7 @@ class Stack{
         }
     }
   
-    // Top element from the stack
+    // Top element from the stack:
     public void pop() // remove at the beginning
     {
         // check for stack underflow
@@ -65,11 +66,11 @@ class Stack{
             System.out.print("\nStack Underflow");
             return;
         }
-  
         // update the top pointer to point to the next node
         top = (top).link;
     }
   
+    // display data:
     public void display()
     {
         // check for stack underflow
@@ -89,12 +90,20 @@ class Stack{
         }
     }
 
-    // function to check if brackets are balanced
-    public static boolean balanced(String expr)
+
+    /* 
+     SymbolChecker: manage the process of checking a file. 
+     @param A Stack
+     @param Scanner
+     @lineNumber as an int 
+    */
+    public static boolean SymbolChecker(String expr)
     {
         // Using ArrayDeque is faster than using Stack class
         Deque<Character> stack
             = new ArrayDeque<Character>();
+
+        int lineCount=0;
  
         // Traversing the Expression
         for (int i = 0; i < expr.length(); i++)
@@ -105,6 +114,8 @@ class Stack{
             {
                 // Push the element in the stack
                 stack.push(x);
+                lineCount++;
+                System.out.println(lineCount);
                 continue;
             }
  
@@ -115,55 +126,67 @@ class Stack{
             switch (x) {
             case ')':
                 check = stack.pop();
-                if (check == '{' || check == '[')
-                    System.out.println(") found does not match "+check);
+                if (check == '{' || check == '[') {
+                    System.out.println("DOES NOT BALANCE ) found does not match "+check);
                     return false;
+                } else {
+                    System.out.println("BALANCES. ) found matches "+check);
+                    return true;
+                }
                // break;
  
             case '}':
                 check = stack.pop();
-                if (check == '(' || check == '[')
+                if (check == '(' || check == '[') {
                     System.out.println("} found does not match "+check);
                     return false;
+                } else {
+                    System.out.println("} found matches "+check);
+                    return true;
+                }
+                    
                // break;
  
             case ']':
                 check = stack.pop();
-                if (check == '(' || check == '{')
+                if (check == '(' || check == '{') {
                     System.out.println("] found does not match "+check);
                     return false;
+                } else {
+                    System.out.println("} found matches "+check);
+                    return true;
                // break;
             }
+        }
         }
         // Check Empty Stack
         return (stack.isEmpty());
     }
-}
+    }
 
 // main class
-public class stackTester {
+public class jUnitTesting {
     public static void main(String[] args)
     {
         // create Object of Implementing class
         Stack obj = new Stack();
+        
         // insert Stack value
         obj.push("{");
         obj.push("}");
   
         // print Stack elements
-        obj.display();
+        // obj.display();
   
         // print Top element of Stack
-        System.out.println("\nTop element is %d " + obj.peek());
+        // System.out.println("\nTop element is %d " + obj.peek());
   
         // Delete top element of Stack
-        obj.pop();
-        obj.pop();
-  
-        // print Stack elements
-        obj.display();
-  
-        // print Top element of Stack
-        System.out.println("\nTop element is %d "+ obj.peek());
+        // obj.pop();
+        // obj.pop();
+        // obj.display();
+        // System.out.println("\nTop element is %d "+ obj.peek());
+
+        obj.SymbolChecker("()");
     }
 }
