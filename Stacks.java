@@ -3,13 +3,12 @@
 
 import java.util.*;
 
-
 // Create Stack Using Linked list
 class Stack{
   
     // A linked list node
     private class Node {
-        int data; // integer data
+        String data; // integer data
         Node link; // reference variable Node type
     }
     
@@ -22,7 +21,7 @@ class Stack{
     }
   
     // Add an element x in the stack
-    public void push(int x) // insert at the beginning
+    public void push(String x) // insert at the beginning
     {
         // create new node temp and allocate memory
         Node temp = new Node();
@@ -46,7 +45,7 @@ class Stack{
     }
   
     // Return top element in a stack
-    public int peek()
+    public String peek()
     {
         // check for empty stack
         if (!isEmpty()) {
@@ -54,7 +53,7 @@ class Stack{
         }
         else {
             System.out.println("Stack is empty");
-            return -1;
+            return "Empty";
         }
     }
   
@@ -75,14 +74,14 @@ class Stack{
     {
         // check for stack underflow
         if (top == null) {
-            System.out.printf("\nStack Underflow");
+            System.out.println("\nStack Underflow");
         }
         else {
             Node temp = top;
             while (temp != null) {
   
                 // print node data
-                System.out.printf("%d->", temp.data);
+                System.out.println("temp.data: "+temp.data);
   
                 // assign temp link to temp
                 temp = temp.link;
@@ -90,9 +89,8 @@ class Stack{
         }
     }
 
-
     // function to check if brackets are balanced
-    public static boolean Balanced(String expr)
+    public static boolean balanced(String expr)
     {
         // Using ArrayDeque is faster than using Stack class
         Deque<Character> stack
@@ -110,9 +108,7 @@ class Stack{
                 continue;
             }
  
-            // If current character is not opening
-            // bracket, then it must be closing. So stack
-            // cannot be empty at this point.
+            //Stack cannot be empty must be closing item:
             if (stack.isEmpty())
                 return false;
             char check;
@@ -120,23 +116,25 @@ class Stack{
             case ')':
                 check = stack.pop();
                 if (check == '{' || check == '[')
+                    System.out.println(") found does not match "+check);
                     return false;
-                break;
+               // break;
  
             case '}':
                 check = stack.pop();
                 if (check == '(' || check == '[')
+                    System.out.println("} found does not match "+check);
                     return false;
-                break;
+               // break;
  
             case ']':
                 check = stack.pop();
                 if (check == '(' || check == '{')
+                    System.out.println("] found does not match "+check);
                     return false;
-                break;
+               // break;
             }
         }
- 
         // Check Empty Stack
         return (stack.isEmpty());
     }
@@ -149,16 +147,14 @@ public class stackTester {
         // create Object of Implementing class
         Stack obj = new Stack();
         // insert Stack value
-        obj.push(11);
-        obj.push(22);
-        obj.push(33);
-        obj.push(44);
+        obj.push("{");
+        obj.push("}");
   
         // print Stack elements
         obj.display();
   
         // print Top element of Stack
-        System.out.printf("\nTop element is %d\n", obj.peek());
+        System.out.println("\nTop element is %d " + obj.peek());
   
         // Delete top element of Stack
         obj.pop();
@@ -168,6 +164,6 @@ public class stackTester {
         obj.display();
   
         // print Top element of Stack
-        System.out.printf("\nTop element is %d\n", obj.peek());
+        System.out.println("\nTop element is %d "+ obj.peek());
     }
 }
