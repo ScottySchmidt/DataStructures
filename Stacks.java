@@ -115,52 +115,48 @@ class Stack{
                 // Push the element in the stack
                 stack.push(x);
                 lineCount++;
-                System.out.println(lineCount);
+                //System.out.println(lineCount);
                 continue;
             }
  
             //Stack cannot be empty must be closing item:
-            if (stack.isEmpty())
+            if (stack.isEmpty()) {
                 return false;
+            }
             char check;
             switch (x) {
             case ')':
                 check = stack.pop();
-                if (check == '{' || check == '[') {
-                    System.out.println("DOES NOT BALANCE ) found does not match "+check);
+                if (check == '(' ) {
+                    System.out.println(" ) found match "+check+ " on line: "+lineCount );
                     return false;
                 } else {
-                    System.out.println("BALANCES. ) found matches "+check);
+                    System.out.println("DOES NOT BALANCE. ) found matches "+check+ " on line: "+lineCount );
                     return true;
                 }
-               // break;
- 
+
             case '}':
                 check = stack.pop();
-                if (check == '(' || check == '[') {
-                    System.out.println("} found does not match "+check);
+                if (check == '{') {
+                    System.out.println("} found does not match "+check+ " on line: "+lineCount );
                     return false;
                 } else {
-                    System.out.println("} found matches "+check);
+                    System.out.println("DOES NOT BALANCE. } found matches "+check+ " on line: "+lineCount );
                     return true;
                 }
                     
-               // break;
- 
             case ']':
                 check = stack.pop();
-                if (check == '(' || check == '{') {
-                    System.out.println("] found does not match "+check);
+                if (check == '[') {
+                    System.out.println("] found does not match "+check+ " on line: "+lineCount );
                     return false;
                 } else {
-                    System.out.println("} found matches "+check);
+                    System.out.println("DOES NOT BALANCE. ] found matches "+check+ " on line: "+lineCount );
                     return true;
-               // break;
             }
         }
         }
-        // Check Empty Stack
-        return (stack.isEmpty());
+        return (stack.isEmpty()); // Check Empty Stack
     }
     }
 
@@ -169,11 +165,13 @@ public class jUnitTesting {
     public static void main(String[] args)
     {
         // create Object of Implementing class
-        Stack obj = new Stack();
+        Stack obj1 = new Stack();
+        Stack obj2 = new Stack();
         
         // insert Stack value
-        obj.push("{");
-        obj.push("}");
+        //obj.push("{");
+        //obj.push("}");
+        //obj.push("}");
   
         // print Stack elements
         // obj.display();
@@ -187,6 +185,8 @@ public class jUnitTesting {
         // obj.display();
         // System.out.println("\nTop element is %d "+ obj.peek());
 
-        obj.SymbolChecker("()");
+        obj1.SymbolChecker("(})");
+        obj2.SymbolChecker("(]");
+        obj2.SymbolChecker("()");
     }
 }
