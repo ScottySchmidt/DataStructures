@@ -3,6 +3,9 @@
 // Python verision  https://github.com/ScottySchmidt/DataStructures/blob/main/Stacks.ipynb
 
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 // Create Stack Using Linked list
 class Stack{
@@ -33,7 +36,6 @@ class Stack{
             System.out.print("\nHeap Overflow");
             return;
         }
-  
         temp.data = x; 
         temp.link = top; 
         top = temp; 
@@ -80,7 +82,6 @@ class Stack{
         else {
             Node temp = top;
             while (temp != null) {
-  
                 // print node data
                 System.out.println("temp.data: "+temp.data);
   
@@ -90,12 +91,40 @@ class Stack{
         }
     }
 
+     /* 
+     SymbolChecker: manage the process of checking a file. 
+     Instance variables: A Stack,  Scanner,  lineNumber as an int 
+ 
+    public static boolean ScannerFile()
+    {
+        // Using ArrayDeque is faster than using Stack class
+        Deque<Character> stack
+            = new ArrayDeque<Character>();
+
+        int lineCount=0;
+ 
+        //creating File instance to reference text file in Java
+        File text = new File("C:/temp/test.txt");
+     
+        //Creating Scanner instance to read File in Java
+        Scanner scnr = new Scanner(text);
+     
+        //Reading each line of the file using Scanner class
+        int lineNumber = 1;
+        while(scnr.hasNextLine()){
+            String line = scnr.nextLine();
+            System.out.println("line " + lineNumber + " :" + line);
+            lineNumber++;
+            SymbolChecker(line);
+        }      
+    }  
+        */
+       
 
     /* 
      SymbolChecker: manage the process of checking a file. 
-     @param A Stack
-     @param Scanner
-     @lineNumber as an int 
+     Instance variables: A Stack,  Scanner,  lineNumber as an int 
+     @param expr  as a String
     */
     public static boolean SymbolChecker(String expr)
     {
@@ -109,12 +138,13 @@ class Stack{
         for (int i = 0; i < expr.length(); i++)
         {
             char x = expr.charAt(i);
+            lineCount++;
  
             if (x == '(' || x == '[' || x == '{')
             {
                 // Push the element in the stack
                 stack.push(x);
-                lineCount++;
+                
                 //System.out.println(lineCount);
                 continue;
             }
@@ -138,7 +168,7 @@ class Stack{
             case '}':
                 check = stack.pop();
                 if (check == '{') {
-                    System.out.println("} found does not match "+check+ " on line: "+lineCount );
+                    System.out.println("} found matches "+check+ " on line: "+lineCount );
                     return false;
                 } else {
                     System.out.println("DOES NOT BALANCE. } found matches "+check+ " on line: "+lineCount );
@@ -148,7 +178,7 @@ class Stack{
             case ']':
                 check = stack.pop();
                 if (check == '[') {
-                    System.out.println("] found does not match "+check+ " on line: "+lineCount );
+                    System.out.println("] found matches "+check+ " on line: "+lineCount );
                     return false;
                 } else {
                     System.out.println("DOES NOT BALANCE. ] found matches "+check+ " on line: "+lineCount );
@@ -185,8 +215,16 @@ public class jUnitTesting {
         // obj.display();
         // System.out.println("\nTop element is %d "+ obj.peek());
 
+        //creating File instance to reference text file in Java
+        //File text = new File("C:/temp/test.txt");
+     
+        //Creating Scanner instance to read File in Java
+        //Scanner scnr = new Scanner(text);
+
         obj1.SymbolChecker("(})");
         obj2.SymbolChecker("(]");
         obj2.SymbolChecker("()");
+        obj2.SymbolChecker("(------)");
+        obj2.SymbolChecker("public{  boolean isLegal = true;}");
     }
 }
