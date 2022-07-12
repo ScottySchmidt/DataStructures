@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
-
 /* 
 Constructor printer
 @param printID as int
@@ -65,7 +64,7 @@ public class generateJob
     {
         for (printer print : q)
         {
-            System.out.println("printer #" + print.getID() + ", Arrival Time = " + print.getArrivalTime() + ", page = "
+            System.out.println("PrinterJob #" + print.getID() + ", Arrival Time = " + print.getArrivalTime() + ", page = "
                     + print.getpage());
         }
     }
@@ -79,11 +78,14 @@ public class generateJob
         printer print = new printer(page, ++currTime);
         if (page < 10) {
             queueOne.add(print);
+            System.out.println("Print job" + print.getID() + " inserted into Queue 1");
         } else if ((page > 10) && (page <21) ) {
             queueTwo.add(print);
+            System.out.println("Print job" + print.getID() + " inserted into Queue 2");
         } 
         else {
-            queueTwo.add(print);
+            queueThree.add(print);
+            System.out.println("Print job" + print.getID() + " inserted into Queue 3");
         }
         System.out.println(print);
     }
