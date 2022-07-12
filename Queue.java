@@ -6,6 +6,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
+
+/* 
+Constructor printer
+@param printID as int
+@param page as int 
+ */
 public class printer
 {
     static int currentID = 0;
@@ -33,14 +39,12 @@ public class printer
     public int getArrivalTime()
     {
         return arrivalTime;
-
     }
 
     public String toString()
     {
-        return "printID = " + printID + ", Arrival Time = " + arrivalTime + ", page = " + page;
+       return "New PrintJob = " + printID + ", time = " + arrivalTime + ", pages = " + page;
     }
-
 }
 
 
@@ -49,7 +53,7 @@ public class generateJob
     static private final int nbEvents = 30;
     static private final int maxpage = 50;
     static int currTime = 0;
-    static int printerToServe = 2;
+    static int printerToServe = 3;
 
     static private Queue<printer> queueOne = new LinkedList<printer>();
     static private Queue<printer> queueTwo = new LinkedList<printer>();
