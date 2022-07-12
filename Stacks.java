@@ -1,115 +1,230 @@
-// Queues; Data Structure; Scott Schmidt
+// Stacks Data Structure; Illinois State University; Scott Schmidt
+// Working Java version:  https://code.sololearn.com/ceZoqE80TaCp
+// Python version  https://github.com/ScottySchmidt/DataStructures/blob/main/Stacks.ipynb
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Random;
+import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-public class printer
-{
-    static int currentID = 0;
-    private int printID;
-    private int page;
-    private int arrivalTime;
-
-    public printer(int custpage, int arrTime)
-    {
-        printID = ++currentID;
-        page = custpage;
-        arrivalTime = arrTime;
+// Create Stack Using Linked list
+class Stack{
+  
+    // A linked list node
+    private class Node {
+        String data; // integer data
+        Node link; // reference variable Node type
     }
+    
+    Node top; // create global top reference variable global
 
-    public int getID()
+    // Constructor
+    Stack()
     {
-        return printID;
+        this.top = null;
     }
-
-    public int getpage()
+  
+    // Add an element x in the stack
+    public void push(String x) // insert at the beginning
     {
-        return page;
-    }
-
-    public int getArrivalTime()
-    {
-        return arrivalTime;
-
-    }
-
-    public String toString()
-    {
-        return "printID = " + printID + ", Arrival Time = " + arrivalTime + ", page = " + page;
-    }
-
-}
-
-
-public class generateJob
-{
-    static private final int nbEvents = 30;
-    static private final int maxpage = 50;
-    static int currTime = 0;
-    static int printerToServe = 2;
-
-    static private Queue<printer> queueOne = new LinkedList<printer>();
-    static private Queue<printer> queueTwo = new LinkedList<printer>();
-    static private Queue<printer> queueThree = new LinkedList<printer>();
-
-    static Random rand = new Random();
-
-    void printQueue(Queue<printer> q)
-    {
-        for (printer print : q)
-        {
-            System.out.println("printer #" + print.getID() + ", Arrival Time = " + print.getArrivalTime() + ", page = "
-                    + print.getpage());
+        // create new node temp and allocate memory
+        Node temp = new Node();
+  
+        // check if stack (heap) is full. Then inserting an
+        //  element would lead to stack overflow
+        if (temp == null) {
+            System.out.print("\nHeap Overflow");
+            return;
         }
+        temp.data = x; 
+        temp.link = top; 
+        top = temp; 
     }
-
-    private static void generateNewprinter()
+  
+    // Utility function to check if the stack is empty or not
+    public boolean isEmpty()
     {
-        int page;
-        // Generate random integers in range 0 to maxpage;
-        System.out.print("New printer: ");
-        page = rand.nextInt(maxpage);
-        printer print = new printer(page, ++currTime);
-        if (page < 10) {
-            queueOne.add(print);
-        } else if ((page > 10) && (page <21) ) {
-            queueTwo.add(print);
-        } 
+        return top == null;
+    }
+  
+    // Return top element in a stack
+    public String peek()
+    {
+        // check for empty stack
+        if (!isEmpty()) {
+            return top.data;
+        }
         else {
-            queueTwo.add(print);
+            System.out.println("Stack is empty");
+            return "Empty";
         }
-        System.out.println(print);
     }
-
-    private static void serveWaitingprinter()
+  
+    // Top element from the stack:
+    public void pop() // remove at the beginning
     {
-        printer print;
-        currTime++;
-        if (queueOne.isEmpty() || (printerToServe == 0))
-        {
-            print = queueTwo.poll();
-            System.out.println("Now serving printer " + print);
-            printerToServe = 2;
+        // check for stack underflow
+        if (top == null) {
+            System.out.print("\nStack Underflow");
+            return;
         }
-        else
-        {
-            printerToServe--;
-            print = queueOne.poll();
-            System.out.println("Now serving printer " + print);
+        // update the top pointer to point to the next node
+        top = (top).link;
+    }
+  
+    // display data:
+    public void display()
+    {
+        // check for stack underflow
+        if (top == null) {
+            System.out.println("\nStack Underflow");
+        }
+        else {
+            Node temp = top;
+            while (temp != null) {
+                // print node data
+                System.out.println("temp.data: "+temp.data);
+  
+                // assign temp link to temp
+                temp = temp.link;
+            }
         }
     }
 
+     /* 
+     SymbolChecker: manage the process of checking a file. 
+     Instance variables: A Stack,  Scanner,  lineNumber as an int 
+ 
+    public static boolean ScannerFile()
+    {
+        // Using ArrayDeque is faster than using Stack class
+        Deque<Character> stack
+            = new ArrayDeque<Character>();
+
+        int lineCount=0;
+ 
+        //creating File instance to reference text file in Java
+        File text = new File("C:/temp/test.txt");
+     
+        //Creating Scanner instance to read File in Java
+        Scanner scnr = new Scanner(text);
+     
+        //Reading each line of the file using Scanner class
+        int lineNumber = 1;
+        while(scnr.hasNextLine()){
+            String line = scnr.nextLine();
+            System.out.println("line " + lineNumber + " :" + line);
+            lineNumber++;
+            SymbolChecker(line);
+        }      
+    }  
+        */
+       
+
+    /* 
+     SymbolChecker: manage the process of checking a file. 
+     Instance variables: A Stack,  Scanner,  lineNumber as an int 
+     @param expr  as a String
+    */
+    public static boolean SymbolChecker(String expr)
+    {
+        // Using ArrayDeque is faster than using Stack class
+        Deque<Character> stack
+            = new ArrayDeque<Character>();
+
+        int lineCount=0;
+ 
+        // Traversing the Expression
+        for (int i = 0; i < expr.length(); i++)
+        {
+            char x = expr.charAt(i);
+            lineCount++;
+ 
+            if (x == '(' || x == '[' || x == '{')
+            {
+                // Push the element in the stack
+                stack.push(x);
+                
+                //System.out.println(lineCount);
+                continue;
+            }
+ 
+            //Stack cannot be empty must be closing item:
+            if (stack.isEmpty()) {
+                return false;
+            }
+            char check;
+            switch (x) {
+            case ')':
+                check = stack.pop();
+                if (check == '(' ) {
+                    System.out.println(" ) found match "+check+ " on line: "+lineCount );
+                    return false;
+                } else {
+                    System.out.println("DOES NOT BALANCE. ) found matches "+check+ " on line: "+lineCount );
+                    return true;
+                }
+
+            case '}':
+                check = stack.pop();
+                if (check == '{') {
+                    System.out.println("} found matches "+check+ " on line: "+lineCount );
+                    return false;
+                } else {
+                    System.out.println("DOES NOT BALANCE. } found matches "+check+ " on line: "+lineCount );
+                    return true;
+                }
+                    
+            case ']':
+                check = stack.pop();
+                if (check == '[') {
+                    System.out.println("] found matches "+check+ " on line: "+lineCount );
+                    return false;
+                } else {
+                    System.out.println("DOES NOT BALANCE. ] found matches "+check+ " on line: "+lineCount );
+                    return true;
+            }
+        }
+        }
+        return (stack.isEmpty()); // Check Empty Stack
+    }
+    }
+
+// main class
+public class jUnitTesting {
     public static void main(String[] args)
     {
-        int nextEvent;
-        for (int i = 0; i < nbEvents; i++)
-        {
-            nextEvent = rand.nextInt(2);
-            if (nextEvent == 0)
-                generateNewprinter();
-            else
-                serveWaitingprinter();
-        }
+        // create Object of Implementing class
+        Stack obj1 = new Stack();
+        Stack obj2 = new Stack();
+        
+        // insert Stack value
+        //obj.push("{");
+        //obj.push("}");
+        //obj.push("}");
+  
+        // print Stack elements
+        // obj.display();
+  
+        // print Top element of Stack
+        // System.out.println("\nTop element is %d " + obj.peek());
+  
+        // Delete top element of Stack
+        // obj.pop();
+        // obj.pop();
+        // obj.display();
+        // System.out.println("\nTop element is %d "+ obj.peek());
+
+        //creating File instance to reference text file in Java
+        //File text = new File("C:/temp/test.txt");
+     
+        //Creating Scanner instance to read File in Java
+        //Scanner scnr = new Scanner(text);
+
+        obj1.SymbolChecker("(})");
+        obj2.SymbolChecker("(]");
+        obj2.SymbolChecker("()");
+        obj2.SymbolChecker("(------)");
+        obj2.SymbolChecker("public{  boolean isLegal = true;}");
     }
 }
