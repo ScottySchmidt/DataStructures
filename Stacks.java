@@ -47,19 +47,20 @@ public class generateJob
     static private final int nbEvents = 30;
     static private final int maxpage = 50;
     static int currTime = 0;
-    static int nbOldprinterToServe = 2;
+    static int printerToServe = 2;
 
-    static private Queue<printer> queueOld = new LinkedList<printer>();
-    static private Queue<printer> queueYoung = new LinkedList<printer>();
+    static private Queue<printer> queueOne = new LinkedList<printer>();
+    static private Queue<printer> queueTwo = new LinkedList<printer>();
+    static private Queue<printer> queueThree = new LinkedList<printer>();
 
     static Random rand = new Random();
 
     void printQueue(Queue<printer> q)
     {
-        for (printer cust : q)
+        for (printer print : q)
         {
-            System.out.println("printer #" + cust.getID() + ", Arrival Time = " + cust.getArrivalTime() + ", page = "
-                    + cust.getpage());
+            System.out.println("printer #" + print.getID() + ", Arrival Time = " + print.getArrivalTime() + ", page = "
+                    + print.getpage());
         }
     }
 
@@ -69,29 +70,33 @@ public class generateJob
         // Generate random integers in range 0 to maxpage;
         System.out.print("New printer: ");
         page = rand.nextInt(maxpage);
-        printer cust = new printer(page, ++currTime);
-        if (page > 50)
-            queueOld.add(cust);
-        else
-            queueYoung.add(cust);
-        System.out.println(cust);
+        printer print = new printer(page, ++currTime);
+        if (page < 10) {
+            queueOne.add(print);
+        } else if ((page > 10) && (page <21) ) {
+            queueTwo.add(print);
+        } 
+        else {
+            queueTwo.add(print);
+        }
+        System.out.println(print);
     }
 
     private static void serveWaitingprinter()
     {
-        printer cust;
+        printer print;
         currTime++;
-        if (queueOld.isEmpty() || (nbOldprinterToServe == 0))
+        if (queueOne.isEmpty() || (printerToServe == 0))
         {
-            cust = queueYoung.poll();
-            System.out.println("Now serving printer " + cust);
-            nbOldprinterToServe = 2;
+            print = queueTwo.poll();
+            System.out.println("Now serving printer " + print);
+            printerToServe = 2;
         }
         else
         {
-            nbOldprinterToServe--;
-            cust = queueOld.poll();
-            System.out.println("Now serving printer " + cust);
+            printerToServe--;
+            print = queueOne.poll();
+            System.out.println("Now serving printer " + print);
         }
     }
 
