@@ -7,25 +7,25 @@ import java.util.Random;
 public class printer
 {
     static int currentID = 0;
-    private int custID;
-    private int age;
+    private int printID;
+    private int page;
     private int arrivalTime;
 
-    public printer(int custAge, int arrTime)
+    public printer(int custpage, int arrTime)
     {
-        custID = ++currentID;
-        age = custAge;
+        printID = ++currentID;
+        page = custpage;
         arrivalTime = arrTime;
     }
 
     public int getID()
     {
-        return custID;
+        return printID;
     }
 
-    public int getAge()
+    public int getpage()
     {
-        return age;
+        return page;
     }
 
     public int getArrivalTime()
@@ -36,7 +36,7 @@ public class printer
 
     public String toString()
     {
-        return "CustID = " + custID + ", Arrival Time = " + arrivalTime + ", Age = " + age;
+        return "printID = " + printID + ", Arrival Time = " + arrivalTime + ", page = " + page;
     }
 
 }
@@ -44,8 +44,8 @@ public class printer
 
 public class generateJob
 {
-    static private final int nbEvents = 50;
-    static private final int maxAge = 100;
+    static private final int nbEvents = 30;
+    static private final int maxpage = 50;
     static int currTime = 0;
     static int nbOldprinterToServe = 2;
 
@@ -58,19 +58,19 @@ public class generateJob
     {
         for (printer cust : q)
         {
-            System.out.println("printer #" + cust.getID() + ", Arrival Time = " + cust.getArrivalTime() + ", Age = "
-                    + cust.getAge());
+            System.out.println("printer #" + cust.getID() + ", Arrival Time = " + cust.getArrivalTime() + ", page = "
+                    + cust.getpage());
         }
     }
 
     private static void generateNewprinter()
     {
-        int age;
-        // Generate random integers in range 0 to maxAge;
+        int page;
+        // Generate random integers in range 0 to maxpage;
         System.out.print("New printer: ");
-        age = rand.nextInt(maxAge);
-        printer cust = new printer(age, ++currTime);
-        if (age > 50)
+        page = rand.nextInt(maxpage);
+        printer cust = new printer(page, ++currTime);
+        if (page > 50)
             queueOld.add(cust);
         else
             queueYoung.add(cust);
