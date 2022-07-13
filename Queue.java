@@ -10,6 +10,7 @@ import java.util.Random;
 Constructor printer
 @param printID as int
 @param page as int 
+@param arrTime as int
  */
 public class printer
 {
@@ -82,8 +83,7 @@ public class generateJob
         } else if ((page > 10) && (page <21) ) {
             queueTwo.add(print);
             System.out.println("Print job" + print.getID() + " inserted into Queue 2");
-        } 
-        else {
+        } else {
             queueThree.add(print);
             System.out.println("Print job" + print.getID() + " inserted into Queue 3");
         }
