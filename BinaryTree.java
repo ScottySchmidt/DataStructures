@@ -54,8 +54,9 @@ public class ExpressionTree
  
     // getInfixNotation, which will take no parameters 
     // return a String that contains the infix version of the expression
-    public static void inorder(BinTreeNode root)
+    public static void getInfixNotation(BinTreeNode root)
     {
+        //String exp; 
         if (root == null) {
             return;
         }
@@ -64,13 +65,14 @@ public class ExpressionTree
             System.out.print("(");
         }
  
-        inorder(root.left);
+        getInfixNotation(root.left);
         System.out.print(root.symbol);
-        inorder(root.right);
+        getInfixNotation(root.right);
  
         if (isOperator(root.symbol)) {
             System.out.print(")");
         }
+        //return exp;
     }
  
     // Function to construct an expression tree 
@@ -100,6 +102,59 @@ public class ExpressionTree
         return s.peek();
     }
  
+    public static int getValue(String exp)
+    {
+
+        Stack<Integer> stack = new Stack<>();
+          
+        for(int i = 0; i < exp.length(); i++)
+        {
+            char c = exp.charAt(i);
+              
+            if(c == ' ')
+            continue;
+              
+            else if(Character.isDigit(c))
+            {
+                int n = 0;
+                  
+                while(Character.isDigit(c))
+                {
+                    n = n*10 + (int)(c-'0');
+                    i++;
+                    c = exp.charAt(i);
+                }
+                i--;
+                stack.push(n);
+            }
+            else
+            {
+                int val1 = stack.pop();
+                int val2 = stack.pop();
+                  
+                switch(c)
+                {
+                    case '+':
+                    stack.push(val2+val1);
+                    break;
+                      
+                    case '-':
+                    stack.push(val2- val1);
+                    break;
+                      
+                    case '/':
+                    stack.push(val2/val1);
+                    break;
+                      
+                    case '*':
+                    stack.push(val2*val1);
+                    break;
+            }
+            }
+        }
+        return stack.pop(); 
+    }
+
     public static void main(String[] args)
     {
         String postfix = "12+345+**";
@@ -109,8 +164,10 @@ public class ExpressionTree
         postorder(root);
  
         System.out.print("\nInfix: ");
-        inorder(root);
+        getInfixNotation(root);
+        //String exp = getInfixNotation(root);
 
         System.out.println("\nResult: ");
+        //getValue(exp);
     }
 }
