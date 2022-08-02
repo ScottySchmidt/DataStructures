@@ -1,5 +1,5 @@
 /* 
-Sorting; DataStructures; Illinois State University;
+Sorting Recursion; DataStructures; Illinois State University;
 https://code.sololearn.com/c4keexzn8pTe
 
 Figure 1 shows a recursive modified version of a selection sort algorithm that we call (in this
@@ -8,13 +8,26 @@ contains three errors.
  */
 public class Program12
 {
-    static void swapElements(int[] tab, int i, int j) {
-        int tmp = tab[j];
+    /* 
+    swapElements function:
+    @param tab array of int 
+    @param i   first number
+    @param j   second number
+    Switches elements within tab int array
+    */
+    public static void swapElements(int[] tab, int i, int j) {
+        int tmp = tab[i];
         tab[i] = tab[j];
         tab[j] = tmp;
     }
     
-    static void minmaxRecursiveSelectionSort(int[] tab, int i, int j)    {
+    /* 
+    Sort array by min and max 
+    @param tab array of int 
+    @param i   first number
+    @param j   second number
+    */
+    public static void minmaxRecursiveSelectionSort(int[] tab, int i, int j)    {
         int min = 0;
         int max = tab.length - 1;
         if (i > j) {
@@ -26,7 +39,7 @@ public class Program12
         if (tab[k] > tab[max])
             max = k;
             System.out.println("new max, k is: "+ k);
-        if (tab[k] > tab[min])
+        if (tab[k] < tab[min])
             min = k;
             System.out.println("new min, k is: "+ k);
         }
@@ -44,7 +57,11 @@ public class Program12
    
      }
 
-        //sorts its input in descending order.
+        /* 
+        ReverseSort function:
+        @param array with intergers
+        :return new array reversed 
+        */
        public static int[] reverseSort(int[] array) {
             int startIndex = 0;
             int endIndex = array.length - 1;
