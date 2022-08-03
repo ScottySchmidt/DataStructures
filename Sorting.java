@@ -1,11 +1,14 @@
 /* 
-Sorting Recursion; DataStructures; Illinois State University;
-https://code.sololearn.com/c4keexzn8pTe
+Sorting Recursion; DataStructures; 
+Illinois State University; Scott Schmidt
+Java Version:  https://code.sololearn.com/c4keexzn8pTe
+Python:  https://github.com/ScottySchmidt/DataStructures/blob/main/SortingRecursion.ipynb
 
 Figure 1 shows a recursive modified version of a selection sort algorithm that we call (in this
 assignment) minmaxSelectionSort(). Figure 1 shows a version of minmaxSelectionSort() that
 contains three errors.
  */
+
 public class Program12
 {
     /* 
@@ -31,7 +34,8 @@ public class Program12
         int min = 0;
         int max = tab.length - 1;
         if (i > j) {
-            System.out.println("i should not be > than j");
+            return;
+           // System.out.println("i > than j");
         }
 
         for (int k = i + 1; k <= j; k++)
@@ -76,10 +80,10 @@ public class Program12
         }
 
     public static void main(String[] args) {
-        int[] myIntArray = {1, 2, 3, 4, 6};
+        int[] myIntArray = {1, 3, 7, 5, 9, 4};
         int [] reversed = reverseSort(myIntArray);
         System.out.println(reversed+ " reversed");
         int len=myIntArray.length-1;
-		minmaxRecursiveSelectionSort(myIntArray, 0, 3);
+		minmaxRecursiveSelectionSort(myIntArray, 0, len);
 	}
 }
