@@ -4,9 +4,12 @@ Illinois State University; Scott Schmidt
 Java Version:  https://code.sololearn.com/c4keexzn8pTe
 Python:  https://github.com/ScottySchmidt/DataStructures/blob/main/SortingRecursion.ipynb
 
-Figure 1 shows a recursive modified version of a selection sort algorithm that we call (in this
-assignment) minmaxSelectionSort(). Figure 1 shows a version of minmaxSelectionSort() that
-contains three errors.
+Figure 1 shows a recursive modified version of a selection sort algorithm that we call 
+minmaxSelectionSort(). Figure 1 shows a version of minmaxSelectionSort() that contains three errors.
+
+Error1: tab[i] = tab[j]
+Error2: if (tab[k] < tab[min])
+Error3: Try Catch Clause for ArrayIndexOutOfBoundsException
  */
 
 public class Program12
@@ -58,7 +61,6 @@ public class Program12
         {
             System.out.println("Requested element not found");
         }
-   
      }
 
         /* 
@@ -79,11 +81,26 @@ public class Program12
             return array;
         }
 
+        /* 
+        printArr:
+        @param array with intergers
+        print out each number in array 
+        */
+        public static void printArr(int[] array) {
+            System.out.println("Reverse Array: ");
+            for (int i=0; i<array.length; i++) {
+                System.out.print(array[i]+ ",  ");
+            }
+            System.out.println();
+        }
+
     public static void main(String[] args) {
         int[] myIntArray = {1, 3, 7, 5, 9, 4};
-        int [] reversed = reverseSort(myIntArray);
-        System.out.println(reversed+ " reversed");
+        int [] reversedArr = reverseSort(myIntArray);
+        printArr(reversedArr);
+       
         int len=myIntArray.length-1;
 		minmaxRecursiveSelectionSort(myIntArray, 0, len);
+        
 	}
 }
