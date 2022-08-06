@@ -18,9 +18,31 @@ import java.util.*;
 
 class TreeNode {
     int data;
-    TreeNode left;
-    TreeNode right;
+    static TreeNode left;
+    static TreeNode right;
     TreeNode(int x){ data =x; left=right = null;}
+
+    public static void findMax(TreeNode node) {
+
+        if (node != null) {
+        int max = node.data;
+        int level = 1;
+        findMax(node.left);
+        findMax(node.right);
+
+        if (node.left != null && node.left.data > max) {
+        max = node.left.data;
+        level = 2;
+        }
+
+        if (node.right != null && node.right.data > max) {
+            max = node.right.data;
+            level = 3;
+        }
+            System.out.println("Max - " + max);
+            System.out.println("Level - " + level);
+        }
+        }
 };
 
 public class Main
@@ -59,8 +81,25 @@ public class Main
         }
         return root;
     }
-//generates a sequence of random integers between 1 and 100 and builds a binary tree in a recursive way as follows:
-//The root of the tree is the first integer generated
+
+    /* 
+    method findMax(root) that takes as a parameter the root of the tree root and 
+    prints out the highest value in the tree and the level of that node. 
+    For example, in our example, the output should be:
+    */
+
+    /* 
+    public static int findMax(TreeNode node){
+    if (node.right == null) {
+        return node.data;
+    }
+    return maxValue(node.right);
+    }
+     */
+
+
+    //generates a sequence of random integers between 1 and 100 and builds a binary tree in a recursive way as follows:
+    //The root of the tree is the first integer generated
 	public static void main(String[] args) {
 	    Random r = new Random(); 
 	    TreeNode root = new TreeNode(r.nextInt(101)); 
@@ -72,5 +111,6 @@ public class Main
         }
         System.out.println(); 
         preorder(root); 
+       //System.out.println("Maximum element is "+ root.findMax());
 	}
 }
